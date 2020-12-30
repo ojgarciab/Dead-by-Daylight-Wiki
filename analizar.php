@@ -79,45 +79,45 @@ if ($salir === true) {
 
 foreach($datos['en']['Template:Icons']['bloques'] as $bloque) {
   echo 'Analizando detalladamente contenido del bloque "', $bloque, '":', PHP_EOL;
-  reset($datos['es']['Template:Icons']['bloque'][$bloque]);
-  reset($datos['en']['Template:Icons']['bloque'][$bloque]);
+  reset($datos['es']['Template:Icons']['duplas'][$bloque]);
+  reset($datos['en']['Template:Icons']['duplas'][$bloque]);
   $siguiente = [
-    'en' => each($datos['en']['Template:Icons']['bloque'][$bloque]),
-    'es' => each($datos['es']['Template:Icons']['bloque'][$bloque]),
+    'en' => each($datos['en']['Template:Icons']['duplas'][$bloque]),
+    'es' => each($datos['es']['Template:Icons']['duplas'][$bloque]),
   ];
   while($siguiente['en'] !== false) {
     //var_export([$siguiente['en'], $siguiente['es']]);
-    error_log("Primer paso: {$siguiente['en']['key']}/{$siguiente['en']['value']} => {$siguiente['es']['key']}/{$siguiente['es']['value']}");
+    error_log("Primer paso: {$siguiente['en']['value'][0]}/{$siguiente['en']['value'][1]} => {$siguiente['es']['value'][0]}/{$siguiente['es']['value'][1]}");
     /* Si hemos llegado al final del castellano o no coincide el término */
-    if ($siguiente['es'] === false || $siguiente['en']['key'] !== $siguiente['es']['key']) {
-      echo 'Falta el término "', $siguiente['en']['value'], '"', PHP_EOL;
-      $siguiente['en'] = each($datos['en']['Template:Icons']['bloque'][$bloque]);
+    if ($siguiente['es'] === false || $siguiente['en']['value'][0] !== $siguiente['es']['value'][0]) {
+      echo 'Falta el término "', $siguiente['en']['value'][1], '"', PHP_EOL;
+      $siguiente['en'] = each($datos['en']['Template:Icons']['duplas'][$bloque]);
       /* ¿Volvemos atrás? */
     } else {
       $anterior = $siguiente;
       $siguiente = [
-        'en' => each($datos['en']['Template:Icons']['bloque'][$bloque]),
-        'es' => each($datos['es']['Template:Icons']['bloque'][$bloque]),
+        'en' => each($datos['en']['Template:Icons']['duplas'][$bloque]),
+        'es' => each($datos['es']['Template:Icons']['duplas'][$bloque]),
       ];
       //var_export([$siguiente['en'], $siguiente['es']]);
-      error_log("- Segundo paso: {$siguiente['en']['key']}/{$siguiente['en']['value']} => {$siguiente['es']['key']}/{$siguiente['es']['value']}");
+      error_log("- Segundo paso: {$siguiente['en']['value'][0]}/{$siguiente['en']['value'][1]} => {$siguiente['es']['value'][0]}/{$siguiente['es']['value'][1]}");
       /* Leemos la traducción y comprobamos que no sea el siguiente término */
       $falta = false;
       if ($siguiente['es'] === false) { /* Falta traducción si no existe el registro */
         error_log('Falta por siguiente === false');
         $falta = true;
-      //} elseif ($anterior['en']['value'] !== $siguiente['es']['value']) { /* O si los iconos son diferentes */
-      //  error_log('Falta por "O si los iconos son diferentes"' . "'{$anterior['en']['value']}' -> '{$siguiente['es']['value']}'");
-      //  $falta = true;
+      } elseif ($anterior['en']['value'][1] !== $siguiente['es']['value'][1]) { /* O si los iconos son diferentes */
+        error_log('Falta por "O si los iconos son diferentes"' . "'{$anterior['en']['value'][1]}' -> '{$siguiente['es']['value'][1]}'");
+        $falta = true;
       //} elseif ($siguiente['en']['key'] === $siguiente['es']['key']) { /* O si la clave es la misma */
       //  error_log('Falta por "O si la clave es la misma"');
       //  $falta = true;
       }
       if ($falta === true) {
-        echo 'Falta traducción del término "', $anterior['en']['value'], '"', PHP_EOL;
+        echo 'Falta traducción del término "', $anterior['en']['value'][1], '"', PHP_EOL;
         //prev($datos['es']['Template:Icons']['bloque'][$bloque]);
       } else {
-        $siguiente['es'] = each($datos['es']['Template:Icons']['bloque'][$bloque]);
+        $siguiente['es'] = each($datos['es']['Template:Icons']['duplas'][$bloque]);
         error_log("OK");
       }
     }
