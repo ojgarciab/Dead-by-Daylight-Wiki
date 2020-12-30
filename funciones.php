@@ -11,11 +11,18 @@ function cache_url($url, $archivo, $refrescar = false) {
 }
 
 function obtener_url($lang, $pagina) {
-  if ($lang == 'en') {
-    $lang = '';
-  } else {
-    $lang = '-' . $lang;
+  $url = "https://deadbydaylight.fandom.com/";
+  if ($lang !== 'en') {
+    $url .= $lang .'/';
   }
-  return 'https://deadbydaylight' . $lang . '.gamepedia.com/api.php?action=query&prop=revisions&rvprop=content&format=json&formatversion=2&titles=' . urlencode($pagina);
+  return $url .'api.php?'. http_build_query([
+    'action' => 'query',
+    'prop' => 'revisions',
+    'rvprop' => 'content',
+    'rvslots' => 'main',
+    'format' => 'json',
+    'formatversion' => 2,
+    'titles' => $pagina,
+  ]);
 }
 
