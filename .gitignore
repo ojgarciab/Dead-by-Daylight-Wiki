@@ -1,4 +1,3 @@
-cache/
+cache/*.txt
 *.html
 *.log
-
