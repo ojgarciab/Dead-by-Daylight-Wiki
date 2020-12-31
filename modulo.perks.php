@@ -14,7 +14,7 @@ $datos = cargar_datos('Module:Datatable/Perks', $lenguajes, $refrescar);
 
 /* Recortamos el contenido original (en inglés) para ser traducido */
 if (preg_match('/^(.*)(perks = {)(.*)(\n}\n)(.*)$/s', $datos['contenido']['en'], $trozos) === 0) {
-  echo "no hemos encontrado el patrón para realizar la traducción", PHP_EOL;
+  echo "ERROR: No hemos encontrado el patrón para realizar la traducción", PHP_EOL;
   exit(1);
 }
 
