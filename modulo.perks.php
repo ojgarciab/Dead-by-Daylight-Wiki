@@ -10,6 +10,7 @@ $lenguajes = [
 ];
 
 require_once 'modulo.comun.php';
+$datos = cargar_datos('Module:Datatable/Perks', $lenguajes, $refrescar);
 
 /* Recortamos el contenido original (en inglés) para ser traducido */
 if (preg_match('/^(.*)(perks = {)(.*)(\n}\n)(.*)$/s', $datos['contenido']['en'], $trozos) === false) {
