@@ -26,3 +26,36 @@ function obtener_url($lang, $pagina) {
   ]);
 }
 
+function primera_letra($cadena) {
+  /* Primer carácter de cada palabra en mayúsculas */
+  $cadena = ucwords($cadena);
+  /* Exceptuando determinantes y otras excepciones */
+  $cadena = str_replace(
+    [
+      ' A ',
+      ' Y ',
+      ' De ',
+      ' La ',
+      ' Lo ',
+      ' El ',
+      ' Las ',
+      ' Los ',
+      ' Que ',
+      ' Para ',
+    ],
+    [
+      ' a ',
+      ' y ',
+      ' de ',
+      ' la ',
+      ' lo ',
+      ' el ',
+      ' las ',
+      ' los ',
+      ' que ',
+      ' para ',
+    ],
+    $cadena
+  );
+  return $cadena;
+}
