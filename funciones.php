@@ -35,6 +35,7 @@ function primera_letra($cadena) {
       ' A ',
       ' Y ',
       ' De ',
+      ' Del ',
       ' La ',
       ' Lo ',
       ' El ',
@@ -42,11 +43,14 @@ function primera_letra($cadena) {
       ' Los ',
       ' Que ',
       ' Para ',
+      ' Un ',
+      ' Una ',
     ],
     [
       ' a ',
       ' y ',
       ' de ',
+      ' del ',
       ' la ',
       ' lo ',
       ' el ',
@@ -54,6 +58,8 @@ function primera_letra($cadena) {
       ' los ',
       ' que ',
       ' para ',
+      ' un ',
+      ' una ',
     ],
     $cadena
   );
