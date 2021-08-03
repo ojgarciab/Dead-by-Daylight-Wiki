@@ -4,7 +4,7 @@ function cargar_datos($modulo, $lenguajes, $refrescar = false) {
     $datos = [];
     foreach($lenguajes as $lenguaje) {
     $datos['traduccion'][$lenguaje] = json_decode(cache_url(
-        "https://raw.githubusercontent.com/Masusder/DataTrackerDBD/master/Content/Localization/DeadByDaylight/{$lenguaje}/DeadByDaylight.json",
+        "https://raw.githubusercontent.com/Masusder/DataTrackerDBD/master/DeadByDaylight/Content/Localization/DeadByDaylight/{$lenguaje}/DeadByDaylight.json",
         '.DeadByDaylight.json.'. $lenguaje,
         $refrescar
     ))->{''};
@@ -17,3 +17,4 @@ function cargar_datos($modulo, $lenguajes, $refrescar = false) {
     }
     return $datos;
 }
+
