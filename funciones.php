@@ -28,7 +28,7 @@ function obtener_url($lang, $pagina) {
 
 function primera_letra($cadena) {
   /* Primer carácter de cada palabra en mayúsculas */
-  $cadena = ucwords($cadena);
+  $cadena = mb_convert_case($cadena, MB_CASE_TITLE);
   /* Exceptuando determinantes y otras excepciones */
   $cadena = str_replace(
     [
