@@ -11,9 +11,15 @@ $lenguajes = [
 
 require_once 'modulo.comun.php';
 $datos = cargar_datos('Module:Datatable/Perks', $lenguajes, $refrescar);
+/* Agregamos datos que faltan pero se mantienen en la Wiki */
+$datos['normalizado']['en']['lastStanding'] = 'last standing';
+$datos['traduccion']['es']->lastStanding = 'El último en pie';
 
 /* Recortamos el contenido original (en inglés) para ser traducido */
-if (preg_match('/^(.*)(perks = {)(.*)(\n}\n)(.*)$/s', $datos['contenido']['en'], $trozos) === 0) {
+if (
+    0 === preg_match('/^(.*)(perks = {)(.*)(\n}\n)(.*)$/s', $datos['contenido']['en'], $trozos)
+    || 6 !== count($trozos)
+) {
   echo "ERROR: No hemos encontrado el patrón para realizar la traducción", PHP_EOL;
   exit(1);
 }
