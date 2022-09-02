@@ -27,9 +27,10 @@ if (
 /* Almacenaremos el resultado parcial para luego mostrarlo o recuperarlo */
 $resultado = '';
 $vacio = str_repeat(" ", 48);
-if (preg_match_all('/^((--)?\t)({.*name ?= ?)("[^"]+")( *)(, ?baseLevel.*)$/mi', $trozos[3], $salida)) {
+if (preg_match_all('/^((--)?(?:\t|    ))({.*name ?= ?)("[^"]+")([ \t]*)(, ?baseLevel.*)$/mi', $trozos[3], $salida)) {
   foreach($salida[4] as $clave => $valor) {
     $nombre = json_decode($valor);
+    echo $nombre, PHP_EOL;
     $nombre = str_replace(
       [
         'Barbecue & Chilli',
@@ -84,6 +85,8 @@ if (preg_match_all('/^((--)?\t)({.*name ?= ?)("[^"]+")( *)(, ?baseLevel.*)$/mi',
       );
       }
   }
+} else {
+    echo "No hay coincidencia", PHP_EOL;
 }
 
 /* Mostramos el resultado */
